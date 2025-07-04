@@ -1,13 +1,17 @@
 /* CSS Variables for Theme Management */
 :root {
+  --primary: #1976D2;
+  --secondary: #424242;
+  --accent: #FFCA28;
+
   /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #fff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --button-bg: var(--primary);
+  --button-text: #fff;
 }
 
 [data-theme="dark"] {
@@ -101,4 +105,247 @@
     padding: 8px 16px;
     font-size: 12px;
   }
+}
+
+/* MAIN LAYOUT */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.sidebar {
+  width: 230px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 1em 1em 1.25em;
+  min-height: 100vh;
+}
+
+.sidebar__title {
+  font-size: 1.7em;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  padding: 0.8em 0.5em;
+  font-size: 1em;
+  text-align: left;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  width: 95%;
+  cursor: pointer;
+  transition: background .13s;
+}
+.nav-btn.active, .nav-btn:hover { background: var(--accent); color: #212121; }
+.nav-btn.logout { margin-top: auto; color: var(--secondary); font-size: .98em; background: none; } 
+.nav-btn.logout:hover { color: var(--primary); background:none; }
+.main-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.1em 1.8em 1.1em 1.8em;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: calc(100% - 230px);
+}
+.user-email {
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.main-content {
+  padding: 2.5em 3.5em;
+  flex: 1;
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.loading { margin: 3em auto; font-size: 1.5em; color: var(--primary); }
+.error, .auth-form__error { color: red; font-size: 0.96em; margin-bottom: 1em; }
+.inline-chk { display: inline-flex; align-items: center; margin-left: 1.2em;font-size:0.97em;}
+
+/* AUTH FORM */
+.auth-form__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+.auth-form {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  padding: 2.5em 2em 2em 2em;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  border: 1px solid var(--border-color);
+}
+.auth-form h2 {
+  text-align: left;
+  color: var(--primary);
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
+.auth-form__footer {
+  text-align: right;
+  font-size: 0.96em;
+  margin-top: -0.7em;
+}
+.link-btn {
+  background: none;
+  color: var(--primary);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 0 0 4px;
+  font-weight: 600;
+  font-size: 0.97em;
+}
+
+/* BUTTONS & INPUTS */
+.btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 500;
+  padding: 0.57em 1.12em;
+  border: none;
+  border-radius: 6px;
+  margin-right: 0.7em;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background .17s, color .13s;
+  margin-bottom: 0.2em;
+}
+.btn.primary { background: var(--primary); color: #fff;}
+.btn.secondary { background: #e0e0e0; color: #333;}
+.btn.back { background: none; color: var(--primary); margin-bottom:1.4em; font-size:1em; }
+.btn.small { font-size: 0.93em; padding: 0.4em 1em; }
+.btn:disabled { opacity: 0.65; }
+.btn:hover { opacity: 0.88; }
+input.input, textarea.input, select.input {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.7em 0.7em;
+  font-size: 1.05em;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 0.9em;
+  width: calc(100% - 1.4em);
+}
+input.input:focus, textarea.input:focus, select.input:focus { outline: 2px solid var(--primary); }
+input.search { width: 260px; margin-right: 1.4em; }
+
+.task-list {
+  width: 100%;
+  max-width: 800px;
+}
+.task-list-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 1.5em;
+}
+.task-list-empty {
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  margin: 2em 0;
+}
+.task-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.9em 1.3em 0.9em 0.8em;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 0.8em;
+  background: var(--bg-secondary);
+  transition: box-shadow 0.13s;
+  cursor: pointer;
+  gap: 1.2em;
+}
+.task-list-item.completed {
+  opacity: 0.66;
+  text-decoration: line-through;
+}
+.task-list-info {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.24em;
+}
+.task-title {
+  font-size: 1.08em;
+  font-weight: 500;
+}
+.task-duedate { font-size: 0.98em; color: var(--accent); }
+.task-list-actions { display: flex; gap: 0.2em; }
+.priority { font-size: 0.93em; margin-top: 0.1em; }
+.pr-1 { color: #BA311E; font-weight:600; }
+.pr-2 { color: #CD8700; }
+.pr-3 { color: #387422; }
+
+.task-view {
+  max-width: 590px;
+  margin: 0 auto;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2.5em 2em 2.5em 2em;
+  text-align: left;
+}
+.task-view h2 { color: var(--primary); margin-bottom: 0.6em; }
+.task-view > div > span { margin-right: 2.1em; font-size: 1.01em;}
+.task-form {
+  background: var(--bg-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2.1em 1.5em 2.1em 1.5em;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.09em;
+}
+.task-form-row {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 2em;
+}
+.task-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+}
+@media (max-width: 1050px) {
+  .main-content { padding: 1.2em 0.8em; }
+}
+@media (max-width: 700px) {
+  .sidebar { width: 100px; padding-left: 5px;}
+  .sidebar__title { font-size: 1.13em; }
+  .main-header, .main-content { width: 100vw; padding:0.7em;}
+  .task-list, .task-form, .task-view {max-width:99vw;}
 }
